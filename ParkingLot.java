@@ -7,8 +7,8 @@ public class ParkingLot {
     private int spacesInLot;
     //private Hashtable<Integer,Integer> idToEntryTime;
     private ArrayList<Integer> minutesEntered;
-    private int timeClosed;
-    private int totalTimeClosed;
+    private int timeClosed; // last time that the lot was closed
+    private int totalTimeClosed; // total duration of time that lot was closed
     public static final int CLOSED_THRESHOLD=80;
     private int prevMinutes;
 
@@ -33,6 +33,7 @@ public class ParkingLot {
         totalTimeClosed=0;
         vehicleID=0;
     }
+
     // member functions
     public int markVehicleEntry(int minutes) {
         if(minutesEntered.size()==spacesInLot) return -1;
