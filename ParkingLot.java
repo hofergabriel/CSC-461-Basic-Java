@@ -43,17 +43,12 @@ public class ParkingLot {
         minutesEntered.add(minutes);
         vehicleID+=1;
         if(isClosed()) { totalTimeClosed+=(minutes-timeClosed); timeClosed=minutes; }
-//                System.out.println(minutesEntered.toString()+"\t\tclosed mins: "+getClosedMinutes());
-//                System.out.println("\t\ttime closed: "+getClosedMinutes());
         return vehicleID-1;
     }
     public int markVehicleExit(int minutes, int id) {
-        // check if vehicle id is actually in lot
         if(minutes<prevMinutes) return -1;
         prevMinutes=minutes;
         if(isClosed()) { totalTimeClosed+=(minutes-timeClosed); timeClosed=minutes; }
-//                System.out.println(minutesEntered.toString()+"\t\tclosed mins: "+getClosedMinutes());
-//                System.out.println("\t\ttime closed: "+getClosedMinutes());
         if(id>=minutesEntered.size()) return -1;
         minutesEntered.remove(id);
         return 0; // ??? still not sure what this is supposed to be
@@ -76,4 +71,27 @@ public class ParkingLot {
     }
     public int getVehiclesInLot(){ return minutesEntered.size(); }
     public void println(ParkingLot pl){ System.out.println(this.toString()); }
+
+
+    public ArrayList<Integer> getMinutesEntered(){
+        return minutesEntered;
+    }
+    public int getPrevMinutes(){
+        return prevMinutes;
+    }
+    public void setPrevMinutes(int min){
+        prevMinutes=min;
+    }
+    public int getTimeClosed(){
+        return timeClosed;
+    }
+    public void setTotalTimeClosed(int time){
+        totalTimeClosed=time;
+    }
+    public void setTimeClosed(int time){
+        timeClosed=time;
+    }
+
+
+
 }
