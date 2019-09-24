@@ -11,6 +11,8 @@ public class ParkingLot {
     private int totalTimeClosed; // total duration of time that lot was closed
     public static final int CLOSED_THRESHOLD=80;
     private int prevMinutes;
+    private int vehicleCount;
+    private int lastPayTime;
 
     // constructors
     public ParkingLot(){
@@ -18,6 +20,8 @@ public class ParkingLot {
         this.parkingLotName="test";
         totalTimeClosed=0;
         vehicleID=0;
+        vehicleCount=0;
+        lastPayTime=-16;
     }
     public ParkingLot(int spaces) {
         minutesEntered=new ArrayList<Integer>();
@@ -25,6 +29,8 @@ public class ParkingLot {
         this.spacesInLot=spaces;
         totalTimeClosed=0;
         vehicleID=0;
+        vehicleCount=0;
+        lastPayTime=-16;
     }
     public ParkingLot(String name, int spaces) {
         minutesEntered=new ArrayList<Integer>();
@@ -32,25 +38,30 @@ public class ParkingLot {
         this.spacesInLot=spaces;
         totalTimeClosed=0;
         vehicleID=0;
+        vehicleCount=0;
+        lastPayTime=-16;
     }
 
     // member functions
     public int markVehicleEntry(int minutes) {
-        if(minutesEntered.size()==spacesInLot) return -1;
+        if(vehicleCount>=spacesInLot) return -1;
         if(minutes<prevMinutes) return -1;
         prevMinutes=minutes;
         if(!isClosed()) timeClosed=minutes;
         minutesEntered.add(minutes);
-        vehicleID+=1;
+        vehicleCount++;
+        System.out.println("markvehicleentry, vehicleCount = "+vehicleCount);
+        //vehicleID+=1;
         if(isClosed()) { totalTimeClosed+=(minutes-timeClosed); timeClosed=minutes; }
-        return vehicleID-1;
+        return vehicleID++;
     }
     public int markVehicleExit(int minutes, int id) {
         if(minutes<prevMinutes) return -1;
         prevMinutes=minutes;
         if(isClosed()) { totalTimeClosed+=(minutes-timeClosed); timeClosed=minutes; }
-        if(id>=minutesEntered.size()) return -1;
-        minutesEntered.remove(id);
+        if(id>=vehicleCount) return -1;
+        //minutesEntered.remove(id);
+        vehicleCount--;
         return 0; // ??? still not sure what this is supposed to be
     }
 
@@ -69,10 +80,7 @@ public class ParkingLot {
     public boolean isClosed() {
         return (100*(float)getVehiclesInLot()/(float)spacesInLot)>=CLOSED_THRESHOLD;
     }
-    public int getVehiclesInLot(){ return minutesEntered.size(); }
-    public void println(ParkingLot pl){ System.out.println(this.toString()); }
-
-
+    public int getVehiclesInLot(){ return vehicleCount; }
     public ArrayList<Integer> getMinutesEntered(){
         return minutesEntered;
     }
@@ -91,6 +99,11 @@ public class ParkingLot {
     public void setTimeClosed(int time){
         timeClosed=time;
     }
+    public void setVehicleCount(int cnt){ vehicleCount=cnt; }
+    public int getVehicleCount(){ return vehicleCount; }
+    public void println(ParkingLot pl){ System.out.println(this.toString()); }
+    public void setLastPayTime(int time){ lastPayTime=time; }
+    public int getLastPayTime(){ return lastPayTime; }
 
 
 
