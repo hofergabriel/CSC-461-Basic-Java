@@ -1,11 +1,9 @@
 import java.util.ArrayList;
 import java.text.DecimalFormat;
 public class ParkingLot {
-    // variables
     private String parkingLotName;
     private int vehicleID;
     private int spacesInLot;
-    //private Hashtable<Integer,Integer> idToEntryTime;
     private ArrayList<Integer> minutesEntered;
     private int timeClosed; // last time that the lot was closed
     private int totalTimeClosed; // total duration of time that lot was closed
@@ -13,7 +11,6 @@ public class ParkingLot {
     private int prevMinutes;
     private int vehicleCount;
     private int lastPayTime;
-
     // constructors
     public ParkingLot(){
         minutesEntered=new ArrayList<Integer>();
@@ -41,7 +38,6 @@ public class ParkingLot {
         vehicleCount=0;
         lastPayTime=-16;
     }
-
     // member functions
     public int markVehicleEntry(int minutes) {
         if(vehicleCount>=spacesInLot) return -1;
@@ -51,7 +47,6 @@ public class ParkingLot {
         minutesEntered.add(minutes);
         vehicleCount++;
         System.out.println("markvehicleentry, vehicleCount = "+vehicleCount);
-        //vehicleID+=1;
         if(isClosed()) { totalTimeClosed+=(minutes-timeClosed); timeClosed=minutes; }
         return vehicleID++;
     }
@@ -60,11 +55,9 @@ public class ParkingLot {
         prevMinutes=minutes;
         if(isClosed()) { totalTimeClosed+=(minutes-timeClosed); timeClosed=minutes; }
         if(id>=vehicleCount) return -1;
-        //minutesEntered.remove(id);
         vehicleCount--;
         return 0; // ??? still not sure what this is supposed to be
     }
-
     public int getClosedMinutes() { return totalTimeClosed; }
     public String toString() {
         String result="Status for "+parkingLotName+" parking lot: "+getVehiclesInLot()+" vehicles (";
@@ -75,7 +68,6 @@ public class ParkingLot {
         }
         return result;
     }
-
     public String getName(){ return this.parkingLotName; }
     public boolean isClosed() {
         return (100*(float)getVehiclesInLot()/(float)spacesInLot)>=CLOSED_THRESHOLD;
@@ -87,9 +79,7 @@ public class ParkingLot {
     public int getPrevMinutes(){
         return prevMinutes;
     }
-    public void setPrevMinutes(int min){
-        prevMinutes=min;
-    }
+    public void setPrevMinutes(int min){ prevMinutes=min; }
     public int getTimeClosed(){
         return timeClosed;
     }
@@ -104,7 +94,5 @@ public class ParkingLot {
     public void println(ParkingLot pl){ System.out.println(this.toString()); }
     public void setLastPayTime(int time){ lastPayTime=time; }
     public int getLastPayTime(){ return lastPayTime; }
-
-
-
+    public void setMinutesEntered(int id, int time){ minutesEntered.set(id,time); }
 }
