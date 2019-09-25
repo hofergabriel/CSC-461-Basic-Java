@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.text.DecimalFormat;
 public class ParkingLot {
     private String parkingLotName;
@@ -11,6 +12,7 @@ public class ParkingLot {
     private int prevMinutes;
     private int vehicleCount;
     private int lastPayTime;
+    private Hashtable<Integer,Integer> paidCarID;
     // constructors
     public ParkingLot(){
         minutesEntered=new ArrayList<Integer>();
@@ -19,6 +21,7 @@ public class ParkingLot {
         vehicleID=0;
         vehicleCount=0;
         lastPayTime=-16;
+        paidCarID=new Hashtable<Integer,Integer>();
     }
     public ParkingLot(int spaces) {
         minutesEntered=new ArrayList<Integer>();
@@ -28,6 +31,7 @@ public class ParkingLot {
         vehicleID=0;
         vehicleCount=0;
         lastPayTime=-16;
+        paidCarID=new Hashtable<Integer,Integer>();
     }
     public ParkingLot(String name, int spaces) {
         minutesEntered=new ArrayList<Integer>();
@@ -37,6 +41,7 @@ public class ParkingLot {
         vehicleID=0;
         vehicleCount=0;
         lastPayTime=-16;
+        paidCarID=new Hashtable<Integer,Integer>();
     }
     // member functions
     public int markVehicleEntry(int minutes) {
@@ -95,4 +100,11 @@ public class ParkingLot {
     public void setLastPayTime(int time){ lastPayTime=time; }
     public int getLastPayTime(){ return lastPayTime; }
     public void setMinutesEntered(int id, int time){ minutesEntered.set(id,time); }
+    public boolean hasPaidBefore(int id){
+        if(paidCarID.containsKey(id)) return true;
+        return false;
+    }
+    public void setCarPaid(int id){
+        paidCarID.put(id,1);
+    }
 }

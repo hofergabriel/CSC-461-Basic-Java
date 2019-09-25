@@ -11,30 +11,30 @@ public class ParkingTests {
      * @param args Ignored command-line arguments
      */
     public static void main(String[] args) {
-//        testSmallLot();
-//        System.out.println();
-//
-//        testComingAndGoing();
-//        System.out.println();
-//
-//        testParkingLot();
-//        System.out.println();
-//
-//        testOverfillingLot();
-//        System.out.println();
-//
-//        testTinyDistrict();
-//        System.out.println();
-//
-//        testDistrict();
-//        System.out.println();
-//
-//        testHeavyUsage();
-//        System.out.println();
-//
-//        testSmallLotPaid();
-//        System.out.println();
-//
+        testSmallLot();
+        System.out.println();
+
+        testComingAndGoing();
+        System.out.println();
+
+        testParkingLot();
+        System.out.println();
+
+        testOverfillingLot();
+        System.out.println();
+
+        testTinyDistrict();
+        System.out.println();
+
+        testDistrict();
+        System.out.println();
+
+        testHeavyUsage();
+        System.out.println();
+
+        testSmallLotPaid();
+        System.out.println();
+
         testLotPaidWithGlitches();
         System.out.println();
 

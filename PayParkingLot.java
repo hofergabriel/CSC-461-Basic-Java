@@ -28,10 +28,14 @@ public class PayParkingLot extends ParkingLot {
             super.setTimeClosed(minutes);
         }
         if(minutes-super.getMinutesEntered().get(id)>=15) {
-            if(super.getMinutesEntered().get(id)==-1) return -1;
-            if (minutes - super.getLastPayTime()>=15||minutes<super.getLastPayTime()){
-                totalProfit += (minutes - super.getMinutesEntered().get(id)) * hourlyFee / 60;
+            if (super.getMinutesEntered().get(id) == -1) return -1;
+            if (minutes - super.getLastPayTime() >= 15 || minutes < super.getLastPayTime()) {
+                if(super.hasPaidBefore(id))
+                    totalProfit+=(minutes-super.getLastPayTime())*hourlyFee/60.0;
+                else
+                    totalProfit+=(minutes - super.getMinutesEntered().get(id)) * hourlyFee / 60;
                 super.setLastPayTime(minutes);
+                super.setCarPaid(id);
             }
         }
         if(minutes<super.getPrevMinutes()) return -1; // glitch?
