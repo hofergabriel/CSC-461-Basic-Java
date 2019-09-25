@@ -33,7 +33,7 @@ public class PayParkingLot extends ParkingLot {
                 if(super.hasPaidBefore(id))
                     totalProfit+=(minutes-super.getLastPayTime())*hourlyFee/60.0;
                 else
-                    totalProfit+=(minutes - super.getMinutesEntered().get(id)) * hourlyFee / 60;
+                    totalProfit+=(minutes - super.getMinutesEntered().get(id)) * hourlyFee / 60.0;
                 super.setLastPayTime(minutes);
                 super.setCarPaid(id);
             }

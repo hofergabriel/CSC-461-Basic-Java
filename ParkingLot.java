@@ -51,7 +51,6 @@ public class ParkingLot {
         if(!isClosed()) timeClosed=minutes;
         minutesEntered.add(minutes);
         vehicleCount++;
-        System.out.println("markvehicleentry, vehicleCount = "+vehicleCount);
         if(isClosed()) { totalTimeClosed+=(minutes-timeClosed); timeClosed=minutes; }
         return vehicleID++;
     }

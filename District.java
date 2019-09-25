@@ -62,5 +62,16 @@ public class District {
             vehiclesInDistrict+=lot.getVehiclesInLot();
         return vehiclesInDistrict;
     }
-    public int getTotalMoneyCollected(){ return 0; }
+    public double getTotalMoneyCollected() {
+        double money=0;
+        for(ParkingLot pl:parkingLots) {
+            if (pl instanceof PayParkingLot) {
+                money += ((PayParkingLot) pl).getProfit();
+            }
+        }
+        return money;
+    }
+    public double getlotprofit(int id){
+        return ((PayParkingLot) IDToParkingLot.get(id)).getProfit();
+    }
 }
