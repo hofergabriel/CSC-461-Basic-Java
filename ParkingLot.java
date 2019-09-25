@@ -13,26 +13,8 @@ public class ParkingLot {
     private int vehicleCount;
     private int lastPayTime;
     private Hashtable<Integer,Integer> paidCarID;
-    // constructors
-    public ParkingLot(){
-        minutesEntered=new ArrayList<Integer>();
-        this.parkingLotName="test";
-        totalTimeClosed=0;
-        vehicleID=0;
-        vehicleCount=0;
-        lastPayTime=-16;
-        paidCarID=new Hashtable<Integer,Integer>();
-    }
-    public ParkingLot(int spaces) {
-        minutesEntered=new ArrayList<Integer>();
-        this.parkingLotName="test";
-        this.spacesInLot=spaces;
-        totalTimeClosed=0;
-        vehicleID=0;
-        vehicleCount=0;
-        lastPayTime=-16;
-        paidCarID=new Hashtable<Integer,Integer>();
-    }
+    public ParkingLot(){ this("test",0); }
+    public ParkingLot(int spaces) { this("test",spaces); }
     public ParkingLot(String name, int spaces) {
         minutesEntered=new ArrayList<Integer>();
         this.parkingLotName=name;
@@ -43,7 +25,6 @@ public class ParkingLot {
         lastPayTime=-16;
         paidCarID=new Hashtable<Integer,Integer>();
     }
-    // member functions
     public int markVehicleEntry(int minutes) {
         if(vehicleCount>=spacesInLot) return -1;
         if(minutes<prevMinutes) return -1;
