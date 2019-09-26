@@ -41,7 +41,7 @@ public class District {
     /**
      * @author Gabriel Hofer
      * @description adds a parking lot to the District object
-     * @param
+     * @param pl - parking lot object that we want to add to the district
      * @return returns the ID of the parking lot that was added
      */
     public int add(ParkingLot pl){

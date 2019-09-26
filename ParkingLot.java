@@ -27,50 +27,44 @@ public class ParkingLot {
     /**
      * @author Gabriel Hofer
      * @description
-     * @param
      * @return
      */
     public int getClosedMinutes() { return totalTimeClosed; }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description returns the duration of time that the lot has been closed
+     * @return returns the duration of time that the lot has been closed
      */
     public String getName(){ return this.parkingLotName; }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description returns name of parking lot
+     * @return return name of parking lot
      */
     public int getVehiclesInLot(){ return vehicleCount; }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description returns number of vehicles in the lot
+     * @return returns number of vehicles in the lot
      */
     public ArrayList<Integer> getMinutesEntered(){ return minutesEntered; }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description returns ArrayList object containing the minute at which
+     * each car entered the lot.
+     * @return an ArrayList containing the minute that each car entered the lot
      */
     public int getPrevMinutes(){ return prevMinutes; }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description returns value of prevMinutes
+     * @return returns value of prevMinutes
      */
     public int getTimeClosed(){ return timeClosed; }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description time Closed keeps track of when the parking lot closed
+     * @return returns time that parking lot closed
      */
     public int getVehicleCount(){ return vehicleCount; }
     /**
@@ -90,7 +84,19 @@ public class ParkingLot {
         if(paidCarID.containsKey(id)) return true;
         return false;
     }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public boolean isClosed() { return (100*(float)getVehiclesInLot()/(float)spacesInLot)>=CLOSED_THRESHOLD; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public int markVehicleEntry(int minutes) {
         if(vehicleCount>=spacesInLot) return -1;
         if(minutes<prevMinutes) return -1;
@@ -117,18 +123,22 @@ public class ParkingLot {
     }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description constructs ParkingLot object with default name of "test"
+     * and 0 spaces for cars
+     * @return returns ParkingLot object
      */
-    public ParkingLot(){ this("test",0); }
+    public ParkingLot() {
+        this("test", 0);
+    }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description constructs ParkingLot object with number of spaces passed as argument
+     * @param spaces - number of spaces that we want the parking lot to have
+     * @return returns ParkingLot object
      */
-    public ParkingLot(int spaces) { this("test",spaces); }
+    public ParkingLot(int spaces) {
+        this("test", spaces);
+    }
     /**
      * @author Gabriel Hofer
      * @description
@@ -147,66 +157,70 @@ public class ParkingLot {
     }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description calls toString function and prints the string that is returned
+     * from toString
+     * @param pl - parking lot
      */
     public void println(ParkingLot pl){ System.out.println(this.toString()); }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description set the time that the car entered the lot.
+     * the id of the car is the index in the ArrayList that maps to the
+     * minute the car entered the lot.
+     * @param id - id of car
+     * @param time - time that car entered the lot
      */
     public void setMinutesEntered(int id, int time){ minutesEntered.set(id,time); }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description lastPayTime keeps track of when the last car paid a fee so that
+     * we can know when the next car can pay (after 15 minutes).
+     * @param time - set the time that the last vehicle payed
      */
     public void setLastPayTime(int time){ lastPayTime=time; }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description updates the current time based on the last car that started heading
+     * toward the exit.
+     * @param min - current time
      */
     public void setPrevMinutes(int min){ prevMinutes=min; }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description used to update the amount of time that the lot has been closed
+     * @param time - time replaces old value by assigning it to totalTimeClosed.
      */
     public void setTotalTimeClosed(int time){
         totalTimeClosed=time;
     }
-
+    /**
+     * @author Gabriel Hofer
+     * @description sets the time that the lot closed
+     * @param time - time that the lot closed
+     */
     public void setTimeClosed(int time){
         timeClosed=time;
     }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description updates the number of vehicles in the parking lot
+     * @param cnt - number of vehicles in parking lot
      */
     public void setVehicleCount(int cnt){ vehicleCount=cnt; }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description keeps track of the IDs of cars that have paid their fee before
+     * @param id - id of car that just paid
      */
     public void setCarPaid(int id){
         paidCarID.put(id,1);
     }
     /**
      * @author Gabriel Hofer
-     * @description
-     * @param
-     * @return
+     * @description reports the number of vehicles in the parking lot.
+     * Also, it tells us whether the lot is closed or not. If the lot isn't closed,
+     * the percentage of vehicles that have been taking is reported.
+     * @return string reporting the number of vehicles in the parking lot and the corresponding percentage value
      */
     public String toString() {
         String result="Status for "+parkingLotName+" parking lot: "+getVehiclesInLot()+" vehicles (";
