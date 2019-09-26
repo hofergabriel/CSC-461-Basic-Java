@@ -9,7 +9,6 @@ public class District {
     private int prevMinutesDistrict;
     private boolean allLotsClosed;
     private int vehiclesInDistrict;
-
     public District(){
         parkingLots=new ArrayList<ParkingLot>();
         IDToParkingLot=new Hashtable<Integer, ParkingLot>();
@@ -52,7 +51,6 @@ public class District {
         IDToParkingLot.put(parkingLotID,pl);
         return parkingLotID++;
     }
-    // apparently this may be a copy constructor
     public ParkingLot getLot(int something) {
         return IDToParkingLot.get(something);
     }
@@ -73,5 +71,11 @@ public class District {
     }
     public double getlotprofit(int id){
         return ((PayParkingLot) IDToParkingLot.get(id)).getProfit();
+    }
+    public String toString(){
+        String str="District status:\n";
+        for(ParkingLot pl:parkingLots)
+            str+=pl.toString()+"\n";
+        return str;
     }
 }

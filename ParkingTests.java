@@ -350,10 +350,13 @@ public class ParkingTests {
         int greenLot = ourTown.add(new ParkingLot("green", 1));
         int blueLot = ourTown.add(new ParkingLot("blue", 2));
         System.out.print("Tiny " + ourTown);
-//         if (!ourTown.toString().equals(initalOutput))
-//             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>> incorrect district toString()");
-//         if (ourTown.getVehiclesParkedInDistrict() != 0)
-//             System.out.println(">>>>>>>>>> Expected 0 vehicles in tiny district");
+
+        System.out.println("\n\n");
+        System.out.println(ourTown.toString());
+         if (!ourTown.toString().equals(initalOutput))
+             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>> incorrect district toString()");
+         if (ourTown.getVehiclesParkedInDistrict() != 0)
+             System.out.println(">>>>>>>>>> Expected 0 vehicles in tiny district");
         ourTown.markVehicleEntry(greenLot, 5);
         ourTown.markVehicleEntry(redLot, 7);
         ourTown.markVehicleEntry(blueLot, 10);
@@ -512,99 +515,62 @@ public class ParkingTests {
         for (int i = 1; i < 9; i++) {
             lot.markVehicleEntry(1);
         }
-        System.out.println("minutesEntered: "+lot.getMinutesEntered()+"\n\n");
         if (!lot.isClosed())
             System.out.println(">>>>>>>>>> Error: lot is NOT closed at time 8.");
 
-/************************************/
-        System.out.println("/************************************/");
         int car9 = lot.markVehicleEntry(9);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered());
         int car10 = lot.markVehicleEntry(10);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered());
         int car11 = lot.markVehicleEntry(10);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered()+"\n\n");
         if (lot.getVehiclesInLot() != 10)
             System.out.println(">>>>>>>>>> Error: lot should have 10 vehicle at time 10.");
         if (car11 != -1)
             System.out.println(">>>>>>>>>> Error: a car was marked as entered, but it was not");
 
-/************************************/
-        System.out.println("/************************************/");
         lot.markVehicleExit(100, car10);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered());
         lot.markVehicleExit(100, car10);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered()+"\n\n");
         if (lot.getVehiclesInLot() != 9)
             System.out.println(">>>>>>>>>> Error: lot should have 9 vehicles at time 9.");
 
-/************************************/
-        System.out.println("/************************************/");
         lot.markVehicleExit(8, car9);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered()+"\n\n");
         if (lot.getVehiclesInLot() != 9)
             System.out.println(">>>>>>>>>> Error: car left before ticket was paid.");
         if (Math.abs(lot.getProfit() - 1.50 ) > 0.01 )
             System.out.println(">>>>>>>>>> Wrong profit. It should be $1.50. Car charged at invalid time");
 
         //System.out.println("\t\t\tlot.getProfit "+lot.getProfit());
-/************************************/
-        System.out.println("/************************************/");
         lot.markVehicleExit(95, car9);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered()+"\n\n");
         if (lot.getVehiclesInLot() != 9)
             System.out.println(">>>>>>>>>> Error: car may have paid but should still be in the parking lot.");
-        //System.out.println("\t\t\tlot.getProfit "+lot.getProfit());
         if (Math.abs(lot.getProfit() - 2.93 ) > 0.01 )
             System.out.println(">>>>>>>>>> Wrong profit. Car paid but still traveling to exit. It should be $2.93");
 
-/************************************/
-        System.out.println("/************************************/");
         int car12 = lot.markVehicleEntry(100);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered()+"\n\n");
 
-/************************************/
-        System.out.println("/************************************/");
         lot.markVehicleExit(105, car9);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered());
         if (lot.getVehiclesInLot() != 9)
             System.out.println(">>>>>>>>>> Error: car paid should be out of the parking lot.");
         if (Math.abs(lot.getProfit() - 2.93 ) > 0.01 )
             System.out.println(">>>>>>>>>> Wrong profit. It should still be $2.93");
 
-/************************************/
-        System.out.println("/************************************/");
         lot.markVehicleExit(103, car12);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered());
         if (lot.getVehiclesInLot() != 9)
             System.out.println(">>>>>>>>>> Error: car paid should be out of the parking lot.");
         if (Math.abs(lot.getProfit() - 2.93 ) > 0.01 )
             System.out.println(">>>>>>>>>> Since first 15 minute are ignored. Profit should still be $2.93");
 
-/************************************/
-        System.out.println("/************************************/");
         lot.markVehicleEntry(120);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered());
         lot.markVehicleExit(116, car12);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered());
-        System.out.println("\t\t\tlot.getProfit "+lot.getProfit());
         if (Math.abs(lot.getProfit() - 3.2 ) > 0.01 )
             System.out.println(">>>>>>>>>> Wrong profit. Car should have paid. It should still be $3.20");
         if (lot.getVehiclesInLot() != 10)
             System.out.println(">>>>>>>>>> Error: car paid should be driving to exit of the parking lot.");
 
-/************************************/
-        System.out.println("/************************************/");
         lot.markVehicleExit(135, car12);
-        System.out.println("minutesEntered: "+lot.getMinutesEntered());
         if (Math.abs(lot.getProfit() - 3.52 ) > 0.01 )
             System.out.println(">>>>>>>>>> Wrong profit. Car should have paid. It should still be $3.52");
-        System.out.println("\t\t\tlot.getProfit "+lot.getProfit());
 
         if (lot.getVehiclesInLot() != 9)
             System.out.println(">>>>>>>>>> Error: car paid should be out of the parking lot.");
-
-        System.out.println(lot);
 
     }
 
