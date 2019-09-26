@@ -2,24 +2,8 @@ import java.text.DecimalFormat;
 public class PayParkingLot extends ParkingLot {
     private double hourlyFee;
     private double totalProfit;
-    public PayParkingLot(){
-        super();
-        hourlyFee=(float)1.00;
-    }
-    public PayParkingLot(String name, int spaces){
-        super(name,spaces);
-        hourlyFee=(float)1.00;
-    }
-    public PayParkingLot(String name, int spaces, double fee){
-        super(name,spaces);
-        hourlyFee=fee;
-    }
-    public PayParkingLot(int spaces, double fee){
-        hourlyFee=fee;
-    }
-    public String toString(){
-        DecimalFormat df=new DecimalFormat("0.00");
-        return super.toString()+" Money collected: $"+df.format(totalProfit);
+    public double getProfit() {
+        return totalProfit;
     }
     public int markVehicleExit(int minutes, int id) {
         if(minutes<super.getMinutesEntered().get(id)) return -1; // glitch0
@@ -44,7 +28,23 @@ public class PayParkingLot extends ParkingLot {
         super.setMinutesEntered(id,-1);
         return 0; // ??? still not sure what this is supposed to be
     }
-    public double getProfit() {
-        return totalProfit;
+    public PayParkingLot(){
+        super();
+        hourlyFee=(float)1.00;
+    }
+    public PayParkingLot(String name, int spaces){
+        super(name,spaces);
+        hourlyFee=(float)1.00;
+    }
+    public PayParkingLot(String name, int spaces, double fee){
+        super(name,spaces);
+        hourlyFee=fee;
+    }
+    public PayParkingLot(int spaces, double fee){
+        hourlyFee=fee;
+    }
+    public String toString(){
+        DecimalFormat df=new DecimalFormat("0.00");
+        return super.toString()+" Money collected: $"+df.format(totalProfit);
     }
 }
