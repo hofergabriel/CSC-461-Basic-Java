@@ -1,3 +1,4 @@
+package hofer_gabriel;
 /**
  * @program Basic Java
  * @author Gabriel Hofer
@@ -7,8 +8,8 @@
  * @date 09/26/2019
  * @description OVERALL PROGRAM DESCRIPTION
  * You will be implementing an API for a number of parking lots in a district. You will be writing
- * three classes: ParkingLot to track the number of vehicles in an individual lot, PayParkingLot is
- * a type of ParkingLot but also tracks how much money is gathered, and District to track the
+ * three classes: ParkingLot to track the number of vehicles in an individual lot, hofer_gabriel.PayParkingLot is
+ * a type of ParkingLot but also tracks how much money is gathered, and hofer_gabriel.District to track the
  * lots in the parking district. This MUST be done in IntelliJ with Java 11.
  * Since coding to meet a specific API is common in the workforce, in order to reuse other software
  * or hardware, you are being provided with a testing class, that must work without changes other
@@ -30,12 +31,12 @@
 /****************************************************************************************/
 /**
  * @description DISTRICT CLASS DESCRIPTION
- *District.java purpose is the manage the individual ParkingLots. If any function needs more
- * than one parking lot, it is best done in District.
+ *hofer_gabriel.District.java purpose is the manage the individual ParkingLots. If any function needs more
+ * than one parking lot, it is best done in hofer_gabriel.District.
  * • You must be able to handle a variable number of parking lots using ONE ArrayList of parking lots
- * • The methods markVehicleEntry and markVehicleExit are in District as well, and take
+ * • The methods markVehicleEntry and markVehicleExit are in hofer_gabriel.District as well, and take
  * an additional parameter in with is parking lot index of which the vehicle is entering or exiting.
- * • The method isClosed for District returns true if and only if all the parking lots are closed at
+ * • The method isClosed for hofer_gabriel.District returns true if and only if all the parking lots are closed at
  * that time.
  * • The method closedMinutes returns the number of minutes that all of the parking lots are
  * closed at the same time. This information would be used to determine if more parking lots are
@@ -47,7 +48,7 @@
  * in the district.
  * • Add a method getTotalMoneyCollected that returns the total number money collected
  * (rounded to the nearest cent) in the district.
- * You will need to use something similar to if( lot instanceof PayParkingLot) for
+ * You will need to use something similar to if( lot instanceof hofer_gabriel.PayParkingLot) for
  * this to work properly, since your regular and paid parking lots are in the same ArrayList. There is
  * an OOP pattern that can avoid instanceof (which is considered bad practice), but for one
  * task, this is far simpler.
@@ -67,7 +68,7 @@ public class District {
     private boolean allLotsClosed;
     private int vehiclesInDistrict;
     /**
-     * @description adds a parking lot to the District object
+     * @description adds a parking lot to the hofer_gabriel.District object
      * @param pl - parking lot object that we want to add to the district
      * @return returns the ID of the parking lot that was added
      */
@@ -76,8 +77,8 @@ public class District {
         return parkingLotID++;
     }
     /**
-     * @description constructor for District class
-     * @return District Object
+     * @description constructor for hofer_gabriel.District class
+     * @return hofer_gabriel.District Object
      */
     public District(){
         parkingLots=new ArrayList<ParkingLot>();

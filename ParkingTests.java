@@ -1,3 +1,5 @@
+package hofer_gabriel;
+
 import java.text.DecimalFormat;
 
 /**
@@ -350,13 +352,11 @@ public class ParkingTests {
         int greenLot = ourTown.add(new ParkingLot("green", 1));
         int blueLot = ourTown.add(new ParkingLot("blue", 2));
         System.out.print("Tiny " + ourTown);
-
-        System.out.println("\n\n");
-        System.out.println(ourTown.toString());
-         if (!ourTown.toString().equals(initalOutput))
-             System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>> incorrect district toString()");
-         if (ourTown.getVehiclesParkedInDistrict() != 0)
-             System.out.println(">>>>>>>>>> Expected 0 vehicles in tiny district");
+        System.out.println("\n\n"+ourTown.toString());
+        if (!ourTown.toString().equals(initalOutput))
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>> incorrect district toString()");
+        if (ourTown.getVehiclesParkedInDistrict() != 0)
+            System.out.println(">>>>>>>>>> Expected 0 vehicles in tiny district");
         ourTown.markVehicleEntry(greenLot, 5);
         ourTown.markVehicleEntry(redLot, 7);
         ourTown.markVehicleEntry(blueLot, 10);
@@ -409,6 +409,7 @@ public class ParkingTests {
         System.out.println("Airport at time 8:");
         System.out.print(airport);
         System.out.println();
+
         ParkingLot blackLot = airport.getLot(black);
         if (!blackLot.getName().equals("black"))
             System.out.println(">>>>>>>>>> Black lot has the wrong color.");
@@ -515,6 +516,7 @@ public class ParkingTests {
         for (int i = 1; i < 9; i++) {
             lot.markVehicleEntry(1);
         }
+
         if (!lot.isClosed())
             System.out.println(">>>>>>>>>> Error: lot is NOT closed at time 8.");
 
@@ -523,6 +525,7 @@ public class ParkingTests {
         int car11 = lot.markVehicleEntry(10);
         if (lot.getVehiclesInLot() != 10)
             System.out.println(">>>>>>>>>> Error: lot should have 10 vehicle at time 10.");
+
         if (car11 != -1)
             System.out.println(">>>>>>>>>> Error: a car was marked as entered, but it was not");
 
@@ -534,27 +537,29 @@ public class ParkingTests {
         lot.markVehicleExit(8, car9);
         if (lot.getVehiclesInLot() != 9)
             System.out.println(">>>>>>>>>> Error: car left before ticket was paid.");
+
         if (Math.abs(lot.getProfit() - 1.50 ) > 0.01 )
             System.out.println(">>>>>>>>>> Wrong profit. It should be $1.50. Car charged at invalid time");
 
-        //System.out.println("\t\t\tlot.getProfit "+lot.getProfit());
         lot.markVehicleExit(95, car9);
         if (lot.getVehiclesInLot() != 9)
             System.out.println(">>>>>>>>>> Error: car may have paid but should still be in the parking lot.");
+
         if (Math.abs(lot.getProfit() - 2.93 ) > 0.01 )
             System.out.println(">>>>>>>>>> Wrong profit. Car paid but still traveling to exit. It should be $2.93");
 
         int car12 = lot.markVehicleEntry(100);
-
         lot.markVehicleExit(105, car9);
         if (lot.getVehiclesInLot() != 9)
             System.out.println(">>>>>>>>>> Error: car paid should be out of the parking lot.");
+
         if (Math.abs(lot.getProfit() - 2.93 ) > 0.01 )
             System.out.println(">>>>>>>>>> Wrong profit. It should still be $2.93");
 
         lot.markVehicleExit(103, car12);
         if (lot.getVehiclesInLot() != 9)
             System.out.println(">>>>>>>>>> Error: car paid should be out of the parking lot.");
+
         if (Math.abs(lot.getProfit() - 2.93 ) > 0.01 )
             System.out.println(">>>>>>>>>> Since first 15 minute are ignored. Profit should still be $2.93");
 
@@ -562,6 +567,7 @@ public class ParkingTests {
         lot.markVehicleExit(116, car12);
         if (Math.abs(lot.getProfit() - 3.2 ) > 0.01 )
             System.out.println(">>>>>>>>>> Wrong profit. Car should have paid. It should still be $3.20");
+
         if (lot.getVehiclesInLot() != 10)
             System.out.println(">>>>>>>>>> Error: car paid should be driving to exit of the parking lot.");
 
@@ -572,65 +578,68 @@ public class ParkingTests {
         if (lot.getVehiclesInLot() != 9)
             System.out.println(">>>>>>>>>> Error: car paid should be out of the parking lot.");
 
+        System.out.println(lot);
+
     }
 
 
-     public static void testPaidDistrict() {
-         System.out.println("Tier 11: Testing a District with 2 normal, and 3 paid parking lots.......................");
-         DecimalFormat format = new DecimalFormat("#.##");
+    public static void testPaidDistrict() {
+        System.out.println("Tier 11: Testing a District with 2 normal, and 3 paid parking lots.......................");
+        DecimalFormat format = new DecimalFormat("#.##");
 
-         District town = new District();
-         town.add(new ParkingLot("pink", 2));
-         town.add(new ParkingLot("blue", 3));
-         town.add(new PayParkingLot("red paid", 2, 3));
-         town.add(new PayParkingLot("gray paid", 3, 2));
-         town.add(new PayParkingLot("green paid", 4));
+        District town = new District();
+        town.add(new ParkingLot("pink", 2));
+        town.add(new ParkingLot("blue", 3));
+        town.add(new PayParkingLot("red paid", 2, 3));
+        town.add(new PayParkingLot("gray paid", 3, 2));
+        town.add(new PayParkingLot("green paid", 4));
 
-         //many entries
-         town.markVehicleEntry(0, 1);
-         town.markVehicleEntry(1, 2);
-         int car1 = town.markVehicleEntry(2, 3);
-         int car2 = town.markVehicleEntry(3, 4);
-         int car3 = town.markVehicleEntry(4, 5);
-         town.markVehicleEntry(1, 6);
-         town.markVehicleEntry(1, 7);
-         town.markVehicleEntry(0, 8);
-         town.markVehicleEntry(2, 9);
-         town.markVehicleEntry(2, 10);
-         town.markVehicleEntry(3, 11);
-         town.markVehicleEntry(3, 11);
-         town.markVehicleEntry(4, 11);
-         town.markVehicleEntry(4, 11);
-         int car4 = town.markVehicleEntry(4, 11);
+        //many entries
+        town.markVehicleEntry(0, 1);
+        town.markVehicleEntry(1, 2);
+        int car1 = town.markVehicleEntry(2, 3);
+        int car2 = town.markVehicleEntry(3, 4);
+        int car3 = town.markVehicleEntry(4, 5);
+        town.markVehicleEntry(1, 6);
+        town.markVehicleEntry(1, 7);
+        town.markVehicleEntry(0, 8);
+        town.markVehicleEntry(2, 9);
+        town.markVehicleEntry(2, 10);
+        town.markVehicleEntry(3, 11);
+        town.markVehicleEntry(3, 11);
+        town.markVehicleEntry(4, 11);
+        town.markVehicleEntry(4, 11);
+        int car4 = town.markVehicleEntry(4, 11);
 
-         town.markVehicleExit(0, 15, 0);
-         town.markVehicleExit(1, 16,0);
-         town.markVehicleExit(2, 7, car1);
-         town.markVehicleExit(3, 16, car2);
-         town.markVehicleExit(4, 30, car3);
-         town.markVehicleExit(4, 20, car4);
+        town.markVehicleExit(0, 15, 0);
+        town.markVehicleExit(1, 16,0);
+        town.markVehicleExit(2, 7, car1);
+        town.markVehicleExit(3, 16, car2);
+        town.markVehicleExit(4, 30, car3);
+        town.markVehicleExit(4, 20, car4);
 
-         if (town.getVehiclesParkedInDistrict() != 10)
-             System.out.println(">>>>>>>>>> Expected 10 vehicles in town");
 
-         if(town.getClosedMinutes()!=4)
-             System.out.println(">>>>>>>>>> At end of day, all lots should be closed 6 minutes. They were closed "
-                     + town.getClosedMinutes() + " min.");
+        if (town.getVehiclesParkedInDistrict() != 10)
+            System.out.println(">>>>>>>>>> Expected 10 vehicles in town");
 
-         if(Math.abs(town.getTotalMoneyCollected()- 0.42) > 0.01)
-             System.out.println(">>>>>>>>>> At end of day, $0.42 should have been collect. $"
-                     + format.format(town.getTotalMoneyCollected() )+ " was collected.");
+        if(town.getClosedMinutes()!=4)
+            System.out.println(">>>>>>>>>> At end of day, all lots should be closed 6 minutes. They were closed "
+                    + town.getClosedMinutes() + " min.");
 
-         String result = "District status:\n" + "Status for pink parking lot: 1 vehicles (50%)\n" +
-                 "Status for blue parking lot: 2 vehicles (66.7%)\n" +
-                 "Status for red paid parking lot: 2 vehicles (CLOSED) Money collected: $0.00\n" +
-                 "Status for gray paid parking lot: 2 vehicles (66.7%) Money collected: $0.00\n" +
-                 "Status for green paid parking lot: 3 vehicles (75%) Money collected: $0.42\n";
-         if(!result.equals(town.toString()))
-             System.out.println(">>>>>>>>>> District toString is incorrect. It should be: " + town);
-         else
-             System.out.println("Final Result---------------------- \n" + town);
-     }
+        if(Math.abs(town.getTotalMoneyCollected()- 0.42) > 0.01)
+            System.out.println(">>>>>>>>>> At end of day, $0.42 should have been collect. $"
+                    + format.format(town.getTotalMoneyCollected() )+ " was collected.");
+
+        String result = "District status:\n" + "Status for pink parking lot: 1 vehicles (50%)\n" +
+                "Status for blue parking lot: 2 vehicles (66.7%)\n" +
+                "Status for red paid parking lot: 2 vehicles (CLOSED) Money collected: $0.00\n" +
+                "Status for gray paid parking lot: 2 vehicles (66.7%) Money collected: $0.00\n" +
+                "Status for green paid parking lot: 3 vehicles (75%) Money collected: $0.42\n";
+        if(!result.equals(town.toString()))
+            System.out.println(">>>>>>>>>> District toString is incorrect. It should be: " + town);
+        else
+            System.out.println("Final Result---------------------- \n" + town);
+    }
 
 
 }

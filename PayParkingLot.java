@@ -1,7 +1,8 @@
+package hofer_gabriel;
 /**
  * @author Gabriel Hofer
  * @description
- *• PayParkingLot is derived from ParkingLot
+ *• hofer_gabriel.PayParkingLot is derived from ParkingLot
  * • A paid lot also has an hourly fee for a car which is collected when the car exits or at the end of
  * the day, that should be set in the constructor.
  * • The fee can vary, and has a default of $1.00 per hour
@@ -72,15 +73,15 @@ public class PayParkingLot extends ParkingLot {
     }
 
     /**
-     * @description default constructor for PayParkingLot class
-     * @return PayParkingLot object
+     * @description default constructor for hofer_gabriel.PayParkingLot class
+     * @return hofer_gabriel.PayParkingLot object
      */
     public PayParkingLot(){
         super();
         hourlyFee=(float)1.00;
     }
     /**
-     * @description constructs PayParkingLot object and sets the name and number of spaces in
+     * @description constructs hofer_gabriel.PayParkingLot object and sets the name and number of spaces in
      * the parking lot. A default fee of $1.00 is used since no value was specified.
      * @param name - name of parking lot
      * @param spaces - number of spaces to park in the parking lot
@@ -90,7 +91,7 @@ public class PayParkingLot extends ParkingLot {
         hourlyFee=(float)1.00;
     }
     /**
-     * @description constructs PayParkingLot object and sets the name and number of spaces in
+     * @description constructs hofer_gabriel.PayParkingLot object and sets the name and number of spaces in
      * the parking lot. It also set the fee charged per hour per car.
      * @param name - name of parking lot
      * @param spaces - number of spaces in parking lot
@@ -101,7 +102,7 @@ public class PayParkingLot extends ParkingLot {
         hourlyFee=fee;
     }
     /**
-     * @description constructs PayParkingLot object and sets the number of spaces in
+     * @description constructs hofer_gabriel.PayParkingLot object and sets the number of spaces in
      * the parking lot. It also sets the fee charged per hour per car.
      * @param spaces - number of spaces in parking lot
      * @param fee - money charged per hour for each car in lot
