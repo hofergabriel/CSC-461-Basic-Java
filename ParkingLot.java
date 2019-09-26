@@ -1,3 +1,13 @@
+/**
+ * @author Gabriel Hofer
+ * @description ParkingLot class keeps track of cars that enter and exit
+ * the parking lot. The parking lot may be given a meaningful name to
+ * or otherwise be set to "test" by default. Cars are given vehicleIDs
+ * when they enter the lot. Each lot is either opened or closed at all times.
+ * vehicleCount is a variable that stores the number of vehicles in the lot.
+ * totalTimeClosed records the amount of time that the lot has been closed
+ * since the last time that a car has exited the lot.
+ */
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.text.DecimalFormat;
@@ -18,9 +28,7 @@ public class ParkingLot {
     public int getVehiclesInLot(){ return vehicleCount; }
     public ArrayList<Integer> getMinutesEntered(){ return minutesEntered; }
     public int getPrevMinutes(){ return prevMinutes; }
-    public int getTimeClosed(){
-        return timeClosed;
-    }
+    public int getTimeClosed(){ return timeClosed; }
     public int getVehicleCount(){ return vehicleCount; }
     public int getLastPayTime(){ return lastPayTime; }
     public boolean hasPaidBefore(int id){

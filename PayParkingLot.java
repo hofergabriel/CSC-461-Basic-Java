@@ -1,3 +1,13 @@
+/**
+ * @author Gabriel Hofer
+ * @description PayParkingLot is a subclass of the ParkingLot class.
+ * PayParkingLot class keeps track of cars that enter and exit
+ * parking lots that change a fee. The variable hourlyFee stores the
+ * fee that the lot requires cars to pay to park there. The variable totalProfit
+ * stores the total amount of money paid.
+ */
+
+
 import java.text.DecimalFormat;
 public class PayParkingLot extends ParkingLot {
     private double hourlyFee;
