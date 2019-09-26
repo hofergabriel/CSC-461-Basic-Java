@@ -23,14 +23,69 @@ public class ParkingLot {
     private int vehicleCount;
     private int lastPayTime;
     private Hashtable<Integer,Integer> paidCarID;
+
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public int getClosedMinutes() { return totalTimeClosed; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public String getName(){ return this.parkingLotName; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public int getVehiclesInLot(){ return vehicleCount; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public ArrayList<Integer> getMinutesEntered(){ return minutesEntered; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public int getPrevMinutes(){ return prevMinutes; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public int getTimeClosed(){ return timeClosed; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public int getVehicleCount(){ return vehicleCount; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public int getLastPayTime(){ return lastPayTime; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public boolean hasPaidBefore(int id){
         if(paidCarID.containsKey(id)) return true;
         return false;
@@ -46,6 +101,12 @@ public class ParkingLot {
         if(isClosed()) { totalTimeClosed+=(minutes-timeClosed); timeClosed=minutes; }
         return vehicleID++;
     }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public int markVehicleExit(int minutes, int id) {
         if(minutes<prevMinutes) return -1;
         prevMinutes=minutes;
@@ -54,8 +115,26 @@ public class ParkingLot {
         vehicleCount--;
         return 0; // ??? still not sure what this is supposed to be
     }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public ParkingLot(){ this("test",0); }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public ParkingLot(int spaces) { this("test",spaces); }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public ParkingLot(String name, int spaces) {
         minutesEntered=new ArrayList<Integer>();
         this.parkingLotName=name;
@@ -66,20 +145,69 @@ public class ParkingLot {
         lastPayTime=-16;
         paidCarID=new Hashtable<Integer,Integer>();
     }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public void println(ParkingLot pl){ System.out.println(this.toString()); }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public void setMinutesEntered(int id, int time){ minutesEntered.set(id,time); }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public void setLastPayTime(int time){ lastPayTime=time; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public void setPrevMinutes(int min){ prevMinutes=min; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public void setTotalTimeClosed(int time){
         totalTimeClosed=time;
     }
+
     public void setTimeClosed(int time){
         timeClosed=time;
     }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public void setVehicleCount(int cnt){ vehicleCount=cnt; }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public void setCarPaid(int id){
         paidCarID.put(id,1);
     }
+    /**
+     * @author Gabriel Hofer
+     * @description
+     * @param
+     * @return
+     */
     public String toString() {
         String result="Status for "+parkingLotName+" parking lot: "+getVehiclesInLot()+" vehicles (";
         if(isClosed()){ result=result+"CLOSED)"; }

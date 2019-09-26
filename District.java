@@ -38,15 +38,31 @@ public class District {
     private int prevMinutesDistrict;
     private boolean allLotsClosed;
     private int vehiclesInDistrict;
+    /**
+     * @author Gabriel Hofer
+     * @description adds a parking lot to the District object
+     * @param
+     * @return returns the ID of the parking lot that was added
+     */
     public int add(ParkingLot pl){
         parkingLots.add(pl);
         return parkingLotID++;
     }
+    /**
+     * @author Gabriel Hofer
+     * @description constructor for District class
+     * @return District Object
+     */
     public District(){
         parkingLots=new ArrayList<ParkingLot>();
         parkingLotID=0;
         totalTimeClosedDistrict=0;
     }
+    /**
+     * @author Gabriel Hofer
+     * @description iterates through all parking lots and checks whether one is open
+     * @return returns true if all parking lots are closed and false otherwise
+     */
     public boolean isClosed(){
         allLotsClosed=true;
         for(ParkingLot pl:parkingLots){
@@ -54,18 +70,39 @@ public class District {
                 return false;}
         return true;
     }
+    /**
+     * @author Gabriel Hofer
+     * @description gets the number of minutes that all parking lots have been closed
+     * @return returns value of totalTimeClosedDistrict
+     */
     public int getClosedMinutes(){
         return totalTimeClosedDistrict;
     }
+    /**
+     * @author Gabriel Hofer
+     * @description gets the ParkingLot object with the ID passed as an argument
+     * @param plID (parking lot ID): ID number for the parking lot we want
+     * @return returns ParkingLot object
+     */
     public ParkingLot getLot(int plID) {
         return parkingLots.get(plID);
     }
+    /**
+     * @author Gabriel Hofer
+     * @description iterates through all parking lots and sums vehicles in each lot
+     * @return number of vehicles in the district
+     */
     public int getVehiclesParkedInDistrict() {
         vehiclesInDistrict=0;
         for(ParkingLot lot:parkingLots)
             vehiclesInDistrict+=lot.getVehiclesInLot();
         return vehiclesInDistrict;
     }
+    /**
+     * @author Gabriel Hofer
+     * @description iterates through all parking lots and sums money in each lot
+     * @return total money collected in district
+     */
     public double getTotalMoneyCollected() {
         double money=0;
         for(ParkingLot pl:parkingLots) {
@@ -75,6 +112,13 @@ public class District {
         }
         return money;
     }
+    /**
+     * @author Gabriel Hofer
+     * @description insert vehicles into parking lots in a district at specific time
+     * @param lotID - ID number of lot that the car is entering
+     * @param minute - time when vehicles enters lot
+     * @return
+     */
     public int markVehicleEntry(int lotID, int minute) {
         if(minute<prevMinutesDistrict) return -1;
         prevMinutesDistrict=minute;
@@ -86,6 +130,14 @@ public class District {
         }
         return parkingLots.get(lotID).markVehicleEntry(minute);
     }
+    /**
+     * @author Gabriel Hofer
+     * @description removes vehicles from parking lots in district at specific time
+     * @param lotID - ID of parking lot
+     * @param minute - minute that car is exiting from lot
+     * @param id - id of car
+     * @return -1 if something went wrong/unsuccessful, otherwise some other value
+     */
     public int markVehicleExit(int lotID, int minute, int id) {
         if(minute<prevMinutesDistrict) return -1;
         prevMinutesDistrict=minute;
@@ -95,6 +147,12 @@ public class District {
         }
         return parkingLots.get(lotID).markVehicleExit(minute,id);
     }
+    /**
+     * @author Gabriel Hofer
+     * @description prints a summary of the district - number of vehicles in each lot
+     * and percentage full
+     * @return string
+     */
     public String toString(){
         String str="District status:\n";
         for(ParkingLot pl:parkingLots)
