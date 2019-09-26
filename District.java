@@ -5,7 +5,7 @@
  * @title Programming Languages
  * @section M01
  * @date 09/26/2019
- * @description
+ * @description OVERALL PROGRAM DESCRIPTION
  * You will be implementing an API for a number of parking lots in a district. You will be writing
  * three classes: ParkingLot to track the number of vehicles in an individual lot, PayParkingLot is
  * a type of ParkingLot but also tracks how much money is gathered, and District to track the
@@ -27,9 +27,9 @@
  * @language Java 11
  * @bugs no known bugs
  */
-import java.util.ArrayList;
+/****************************************************************************************/
 /**
- * @description
+ * @description DISTRICT CLASS DESCRIPTION
  *District.java purpose is the manage the individual ParkingLots. If any function needs more
  * than one parking lot, it is best done in District.
  * • You must be able to handle a variable number of parking lots using ONE ArrayList of parking lots
@@ -57,6 +57,7 @@ import java.util.ArrayList;
  * Status for purple parking lot: 8 vehicles (CLOSED)
  * Status for gold parking lot: 20 vehicles (33.3%)
  */
+import java.util.ArrayList;
 public class District {
     private ArrayList<ParkingLot> parkingLots;
     private int parkingLotID;
@@ -135,8 +136,8 @@ public class District {
     /**
      * @description insert vehicles into parking lots in a district at specific time
      * @param lotID - ID number of lot that the car is entering
-     * @param minute - time when vehicles enters lot
-     * @return
+     * @param minute - time when vehicles enters parking lot
+     * @return returns new ID of car that entered the parking lot
      */
     public int markVehicleEntry(int lotID, int minute) {
         if(minute<prevMinutesDistrict) return -1;
@@ -167,8 +168,9 @@ public class District {
     }
     /**
      * @description prints a summary of the district - number of vehicles in each lot
-     * and percentage full
-     * @return string
+     * and percentage-full of each lot
+     * @return string describing the number of vehicles in each lot and the percentage-full
+     * of each lot
      */
     public String toString(){
         String str="District status:\n";
