@@ -29,7 +29,6 @@
  * Status for pink parking lot: 17 vehicles (68.2%)
  * Status for blue parking lot: 28 vehicles (CLOSED)
  * Status for gray parking lot: 2 vehicles (20%)
- * @bugs
  */
 import java.util.ArrayList;
 import java.util.Hashtable;
