@@ -1,13 +1,29 @@
 /**
  * @author Gabriel Hofer
- * @description PayParkingLot is a subclass of the ParkingLot class.
- * PayParkingLot class keeps track of cars that enter and exit
- * parking lots that change a fee. The variable hourlyFee stores the
- * fee that the lot requires cars to pay to park there. The variable totalProfit
- * stores the total amount of money paid.
- */
-
-
+ * @description
+ *• PayParkingLot is derived from ParkingLot
+ * • A paid lot also has an hourly fee for a car which is collected when the car exits or at the end of
+ * the day, that should be set in the constructor.
+ * • The fee can vary, and has a default of $1.00 per hour
+ * • It must override the toString function to include the current money collected. It should
+ * append “ Money Collected: $[totalProfit]” to the string produced by the parent class. The profit
+ * should be rounded to the nearest cent and must display to 2 decimal places.
+ * • Add a function called getProfit() that will return the current funds collected. Since this is
+ * the funds currently collected, this will be accurate even if the cars have not left the lot yet.
+ * • If markVehicleExit is given a car with an invalid id, simply ignore it as a glitch.
+ * • A car in paid parking car may “pay as they go” similar to refilling a parking meter. The first 15
+ * minute after entry and paying are ignored to allow time to reach the exit. This means other cars
+ * can exit before they do. Therefore,
+ * o Do not charge if they try to exit/pay before they came. This is a glitch like in the
+ * ParkingLot class.
+ * o If they try to exit
+ * ▪ If it is under 15 since the entry or last pay, do not charge, and do not update
+ * their last time of entry/pay.
+ * ▪ If it is over 15 minutes since the entry or last pay, charge them since the last
+ * time of entry/pay, and update their last time of entry/pay.
+ * o If the car does not exit (the time is already updated to a later time due to another car
+ * leaving), leave the car in the lot.
+ * */
 import java.text.DecimalFormat;
 public class PayParkingLot extends ParkingLot {
     private double hourlyFee;

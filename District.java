@@ -1,7 +1,10 @@
 /**
- * @program CSC-461 Basic Java
+ * @program Basic Java
  * @author Gabriel Hofer
- * @date 9/26/2019
+ * @class CSC-461
+ * @title Programming Languages
+ * @section M01
+ * @date 09/26/2019
  * @description
  * You will be implementing an API for a number of parking lots in a district. You will be writing
  * three classes: ParkingLot to track the number of vehicles in an individual lot, PayParkingLot is
@@ -25,10 +28,34 @@
  * @bugs no known bugs
  */
 import java.util.ArrayList;
-
 /**
- * District uses an ArrayList to store multiple parking lots.
- * It also Uses a Hashtable to stoe
+ * @description
+ *District.java purpose is the manage the individual ParkingLots. If any function needs more
+ * than one parking lot, it is best done in District.
+ * • You must be able to handle a variable number of parking lots using ONE ArrayList of parking lots
+ * • The methods markVehicleEntry and markVehicleExit are in District as well, and take
+ * an additional parameter in with is parking lot index of which the vehicle is entering or exiting.
+ * • The method isClosed for District returns true if and only if all the parking lots are closed at
+ * that time.
+ * • The method closedMinutes returns the number of minutes that all of the parking lots are
+ * closed at the same time. This information would be used to determine if more parking lots are
+ * needed.
+ * • Add a method add that takes in a Parking Lot, and returns its index.
+ * • Add a method getLot which returns the ParkingLot at the given index. You may assume a
+ * valid index.
+ * • Add a method getVehiclesParkedInDistrict the returns the total number of parked cars
+ * in the district.
+ * • Add a method getTotalMoneyCollected that returns the total number money collected
+ * (rounded to the nearest cent) in the district.
+ * You will need to use something similar to if( lot instanceof PayParkingLot) for
+ * this to work properly, since your regular and paid parking lots are in the same ArrayList. There is
+ * an OOP pattern that can avoid instanceof (which is considered bad practice), but for one
+ * task, this is far simpler.
+ * • Add a method call isClosed that returns true is ALL parking lots are closed
+ * • The value returned by toString must be a string with newline characters embedded in it. For
+ * example, toString could return a string such as
+ * Status for purple parking lot: 8 vehicles (CLOSED)
+ * Status for gold parking lot: 20 vehicles (33.3%)
  */
 public class District {
     private ArrayList<ParkingLot> parkingLots;
