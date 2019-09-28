@@ -1,2 +1,2 @@
 # Basic_Java
-homework 
+CSC-461 Programming Assignment 1
